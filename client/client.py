@@ -14,9 +14,8 @@ def send_get_request(client_socket, file_path):
 
     # Save the body to file
     current_directory = os.path.dirname(os.path.abspath(__file__))
-    file_in_client = current_directory +'/'+ os.path.basename(file_path)
-    print(f"Saving file to {file_in_client}")
-    with open(file_in_client, 'wb') as f:
+    file_path_client = current_directory +'/'+ os.path.basename(file_path)
+    with open(file_path_client, 'wb') as f:
         f.write(body)
 
 def send_post_request(client_socket, file_path):
@@ -26,7 +25,7 @@ def send_post_request(client_socket, file_path):
             file_data = f.read()
 
         # Construct POST request with file data
-        request = f"POST /{file_path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: {len(file_data)}\r\n\r\n"
+        request = f"POST /{file_path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: {len(file_data)}\r\n\r\nBody: {file_data}"
         client_socket.send(request.encode('utf-8')) 
         client_socket.send(file_data) 
 

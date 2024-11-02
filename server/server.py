@@ -20,7 +20,6 @@ def handle_client(client_socket):
                 if os.path.exists(file_path):
                     with open(file_path, 'rb') as f:
                         response_body = f.read()
-                    print(response_body)
                     response = 'HTTP/1.1 200 OK\r\n\r\n'.encode('utf-8') + response_body
                 else:
                     response = 'HTTP/1.1 404 Not Found\r\n\r\n'.encode('utf-8')
@@ -29,15 +28,20 @@ def handle_client(client_socket):
             # Handling POST request
             elif command == 'POST':
                 content_length = 0
+                body = ''
                 for header in headers:
                     if header.startswith('Content-Length:'):
                         content_length = int(header.split(":")[1].strip())
+                    if header.startswith('Body:'):
+                        body = header.split(":")[1].strip()
                 
                 # Receive the file data
-                body = client_socket.recv(content_length)
+                # body = client_socket.recv(content_length)
                 
                 # Save the file
-                with open(file_path, 'wb') as f:
+                current_directory = os.path.dirname(os.path.abspath(__file__))
+                file_path_server = current_directory +'/'+ os.path.basename(file_path)
+                with open(file_path_server, 'wb') as f:
                     f.write(body)
 
                 response = 'HTTP/1.1 200 OK\r\n\r\nFile received and saved'.encode('utf-8')
