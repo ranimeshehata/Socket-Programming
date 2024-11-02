@@ -20,6 +20,7 @@ def handle_client(client_socket):
                 if os.path.exists(file_path):
                     with open(file_path, 'rb') as f:
                         response_body = f.read()
+                    print(response_body)
                     response = 'HTTP/1.1 200 OK\r\n\r\n'.encode('utf-8') + response_body
                 else:
                     response = 'HTTP/1.1 404 Not Found\r\n\r\n'.encode('utf-8')

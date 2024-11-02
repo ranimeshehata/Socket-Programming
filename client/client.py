@@ -1,5 +1,6 @@
 import socket
 import sys
+import os
 
 def send_get_request(client_socket, file_path):
     # Construct GET request
@@ -12,7 +13,10 @@ def send_get_request(client_socket, file_path):
     print(headers.decode('utf-8')) 
 
     # Save the body to file
-    with open(file_path, 'wb') as f:
+    current_directory = os.path.dirname(os.path.abspath(__file__))
+    file_in_client = current_directory +'/'+ os.path.basename(file_path)
+    print(f"Saving file to {file_in_client}")
+    with open(file_in_client, 'wb') as f:
         f.write(body)
 
 def send_post_request(client_socket, file_path):
