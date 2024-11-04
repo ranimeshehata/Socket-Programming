@@ -8,9 +8,18 @@ def send_get_request(client_socket, file_path):
     client_socket.send(request.encode('utf-8'))
     
     # Receive the response
-    response = client_socket.recv(4096)
+    # Images are huge so 4096 bytes is not enough to receive the whole response
+    # response = b''
+    # while True:
+    #     part = client_socket.recv(4096)
+    #     response += part
+    #     if len(part) < 4096:
+    #         break
+    # response = b""
+    response = client_socket.recv(60000)
     headers, body = response.split(b'\r\n\r\n', 1)
     print(headers.decode('utf-8')) 
+
 
     # Save the body to file
     current_directory = os.path.dirname(os.path.abspath(__file__))
@@ -25,8 +34,8 @@ def send_post_request(client_socket, file_path):
             file_data = f.read()
 
         # Construct POST request with file data
-        request = f"POST /{file_path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: {len(file_data)}\r\n\r\nBody: {file_data}"
-        client_socket.send(request.encode('utf-8')) 
+        request = f"POST /{file_path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: {len(file_data)}\r\nConnection: close\r\n\r\n"
+        client_socket.send(request.encode('utf-8')+file_data) 
         client_socket.send(file_data) 
 
         # Receive the response
