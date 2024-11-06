@@ -51,6 +51,7 @@ def handle_client(client_socket):
 
 def start_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    socket.setdefaulttimeout(15)  # Set timeout to 15 seconds per connection
     server_ip = "127.0.0.1"
     port = 8000
     server.bind((server_ip, port))
