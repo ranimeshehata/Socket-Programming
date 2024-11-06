@@ -1,4 +1,5 @@
 import socket
+import sys
 import threading
 import os
 
@@ -54,6 +55,8 @@ def start_server():
     socket.setdefaulttimeout(15)  # Set timeout to 15 seconds per connection
     server_ip = "127.0.0.1"
     port = 8000
+    if len(sys.argv) > 1:
+        port = int(sys.argv[1])
     server.bind((server_ip, port))
     server.listen(5)
     print(f"Server listening on {server_ip}:{port}")

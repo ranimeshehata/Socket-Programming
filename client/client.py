@@ -9,13 +9,6 @@ def send_get_request(client_socket, file_path):
     
     # Receive the response
     # Images are huge so 4096 bytes is not enough to receive the whole response
-    # response = b''
-    # while True:
-    #     part = client_socket.recv(4096)
-    #     response += part
-    #     if len(part) < 4096:
-    #         break
-    # response = b""
     response = client_socket.recv(60000)
     headers, body = response.split(b'\r\n\r\n', 1)
     print(headers.decode('utf-8')) 
@@ -48,6 +41,8 @@ if __name__ == "__main__":
     
     server_ip = "127.0.0.1"
     port = 8000
+    if len(sys.argv) > 1:
+        port = int(sys.argv[1])
     host = server_ip
 
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -61,6 +56,8 @@ if __name__ == "__main__":
         elif command.startswith("POST"):
             _, file_path = command.split()
             send_post_request(client_socket, file_path)
+        elif command == "exit":
+            break 
         else:
             print("Invalid command")
 
