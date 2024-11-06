@@ -19,6 +19,7 @@ def send_get_request(client_socket, file_path):
     file_path_client = current_directory +'/'+ os.path.basename(file_path)
     with open(file_path_client, 'wb') as f:
         f.write(body)
+    print(f"File received and saved as {file_path_client}, content: {body}")
 
 def send_post_request(client_socket, file_path):
     try:
