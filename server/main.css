@@ -1,0 +1,21 @@
+/* CSS for Powerpuff Girls-themed welcome page */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #ffe3f5; /* light pink background */
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+}
+
+.welcome-message {
+    text-align: center;
+    color: #ff1493; /* bright pink text color */
+    font-size: 3em;
+    padding: 20px;
+    background-color: #fff0fa; /* soft pink background */
+    border: 3px solid #ff69b4; /* pink border */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 20, 147, 0.4); /* soft pink shadow */
+}
