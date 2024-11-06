@@ -36,7 +36,7 @@ def send_post_request(client_socket, file_path):
         # Construct POST request with file data
         request = f"POST /{file_path} HTTP/1.1\r\nHost: {host}\r\nContent-Length: {len(file_data)}\r\nConnection: close\r\n\r\n"
         client_socket.send(request.encode('utf-8')+file_data) 
-        client_socket.send(file_data) 
+        # client_socket.send(file_data) 
 
         # Receive the response
         response = client_socket.recv(4096)
