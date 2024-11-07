@@ -91,7 +91,7 @@ def main():
     plt.plot(requests, avg_delay, marker='o')
     plt.xlabel("Number of Requests")
     plt.ylabel("Average Delay (seconds)")
-    plt.title("Server Delay vs. Number of Clients")
+    plt.title("Server Delay vs. Number of Requests")
     plt.show()
 
 
