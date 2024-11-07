@@ -9,7 +9,7 @@ last_connection_time = time.time()
 running_server = True
 
 def calculate_timeout(current_connections):
-    base_timeout = 15  # seconds
+    base_timeout = 20  # seconds
     min_timeout = 5    # minimum timeout
     return max(min_timeout, base_timeout - len(current_connections))
 

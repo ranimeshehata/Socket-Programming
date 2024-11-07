@@ -22,7 +22,7 @@ def send_get_request(client_socket, file_path, host):
     file_path_client = current_directory +'/'+ os.path.basename(file_path)
     with open(file_path_client, 'wb') as f:
         f.write(body)
-    print(f"File received and saved as {file_path_client}, content: {body}")
+    # print(f"File received and saved as {file_path_client}, content: {body}")
 
 def send_post_request(client_socket, file_path, host):
     try:
@@ -42,7 +42,7 @@ def send_post_request(client_socket, file_path, host):
 
 
 
-def parser(file_path):
+def parser(file_path, host, port):
     try:
         with open(file_path, 'r') as file:
             lines = file.readlines()
@@ -54,22 +54,23 @@ def parser(file_path):
                 continue
             command = parts[0]
             file_requested = parts[1]
-            host = parts[2] if len(parts) > 2 else DEFAULT_HOST
-            port = int(parts[3]) if len(parts) > 3 else DEFAULT_PORT
+            host = parts[2] if len(parts) > 2 else host
+            port = int(parts[3]) if len(parts) > 3 else port
             client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             client_socket.connect((host, port))
             if command == 'client_get':
                 send_get_request(client_socket, file_requested, host)
             elif command == 'client_post':
                 send_post_request(client_socket, file_requested, host)
+            client_socket.close()
         
     except Exception as e:
         print(f"Error processing the command file: {e}")
 
 def main():
-    DEFAULT_HOST = DEFAULT_HOST if len(sys.argv) < 2 else sys.argv[1]
-    DEFAULT_PORT = DEFAULT_PORT if len(sys.argv) < 3 else sys.argv[2]
-    parser("client/requests.txt")
+    host = DEFAULT_HOST if len(sys.argv) < 2 else sys.argv[1]
+    port = DEFAULT_PORT if len(sys.argv) < 3 else sys.argv[2]
+    parser("client/requests.txt", host, port)
 
 
 
