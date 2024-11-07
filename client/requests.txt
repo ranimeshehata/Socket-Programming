@@ -1,0 +1,4 @@
+client_get server/index.html 127.0.0.1 8080
+client_post server/testServer.txt 127.0.0.1 8080
+client_get server/photoServer.jpg 127.0.0.1
+client_post client/testClient.txt 127.0.0.1

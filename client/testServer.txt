@@ -1,5 +1,0 @@
-hi from server
-test
-saving
-to 
-client
