@@ -16,7 +16,8 @@ def send_get_request(client_socket, file_path, host):
     response = client_socket.recv(60000)
     headers, body = response.split(b'\r\n\r\n', 1)
     print(headers.decode('utf-8')) 
-
+    if(headers.decode('utf-8').split()[1] == '404'):
+        return
 
     current_directory = os.path.dirname(os.path.abspath(__file__))
     file_path_client = current_directory +'/'+ os.path.basename(file_path)
