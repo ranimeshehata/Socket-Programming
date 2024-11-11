@@ -13,7 +13,8 @@ def send_get_request(client_socket, file_path):
     headers, body = response.split(b'\r\n\r\n', 1)
     print(headers.decode('utf-8')) 
 
-
+    if(headers.decode('utf-8').split()[1] == '404'):
+        return
     # Save the body to file
     current_directory = os.path.dirname(os.path.abspath(__file__))
     file_path_client = current_directory +'/'+ os.path.basename(file_path)
@@ -41,7 +42,7 @@ def send_post_request(client_socket, file_path):
 if __name__ == "__main__":
     
     server_ip = "127.0.0.1"
-    port = 8000
+    port = 8080
     if len(sys.argv) > 1:
         port = int(sys.argv[1])
     host = server_ip

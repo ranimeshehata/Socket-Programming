@@ -80,7 +80,7 @@ def inactivity_checker(server_socket):
             server_socket.shutdown(socket.SHUT_RDWR)
             server_socket.close()
             break
-        time.sleep(1)
+        # time.sleep(1)
 
 
 def start_server():
