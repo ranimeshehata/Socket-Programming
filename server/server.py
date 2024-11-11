@@ -9,7 +9,7 @@ last_connection_time = time.time()
 running_server = True
 
 def calculate_timeout(current_connections):
-    base_timeout = 20  # seconds
+    base_timeout = 60  # seconds
     min_timeout = 5    # minimum timeout
     return max(min_timeout, base_timeout - len(current_connections))
 
@@ -88,7 +88,7 @@ def start_server():
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     # socket.setdefaulttimeout(5)  # Set timeout to 15 seconds per connection
     server_ip = "127.0.0.1"
-    port = 8000
+    port = 8080
     if len(sys.argv) > 1:
         port = int(sys.argv[1])
     server.bind((server_ip, port))
