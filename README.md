@@ -80,3 +80,6 @@ The server can handle the following file types:
     ```
 ### Notes
 `index.html` was changed because browsers load its favicon by default which leads to delay, so it was changed to `welcome.html` to avoid confusion.
+
+### Finally ... Welcome to our Server!
+![](./image.png)
