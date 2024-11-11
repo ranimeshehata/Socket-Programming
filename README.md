@@ -51,3 +51,30 @@ The server can handle the following file types:
     python3 client/client_parser.py
     ```
     
+## Testing
+ 1. Bonus Test Cases
+    ```
+    http://localhost:8080/server/testServer.txt
+    ```
+    ```
+    http://localhost:8080/server/photoServer.jpg
+    ```
+    ```
+    http://localhost:8080/server/index.html
+    ```
+2. `client.py` tests
+    ```
+    GET server/testServer.txt
+    ```
+    ```
+    POST client/testClient.txt
+    ```
+    ```
+    GET server/photoServer.jpg
+    ```
+    ```
+    POST client/photoClient.jpg
+    ```
+    ```
+    GET server/index.html
+    ```
