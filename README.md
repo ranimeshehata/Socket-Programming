@@ -78,3 +78,5 @@ The server can handle the following file types:
     ```
     GET server/welcome.html
     ```
+### Notes
+`index.html` was changed because browsers load its favicon by default which leads to delay, so it was changed to `welcome.html` to avoid confusion.
