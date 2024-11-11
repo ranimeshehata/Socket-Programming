@@ -60,7 +60,7 @@ The server can handle the following file types:
     http://localhost:8080/server/photoServer.jpg
     ```
     ```
-    http://localhost:8080/server/index.html
+    http://localhost:8080/server/welcome.html
     ```
 2. `client.py` tests
     ```
@@ -76,5 +76,5 @@ The server can handle the following file types:
     POST client/photoClient.jpg
     ```
     ```
-    GET server/index.html
+    GET server/welcome.html
     ```
